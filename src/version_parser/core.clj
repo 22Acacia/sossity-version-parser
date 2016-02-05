@@ -14,15 +14,13 @@
    ["-o" "--output OUTPUT" "path to output terraform file"]])
 
 (defn -main
-  "Entry Point"
+  "See README for details"
   [& args]
   (let [opts (:options (clojure.tools.cli/parse-opts args cli-options))
         output (:output opts)
         pipelines (:pipelines (conf (:config opts)))
         otherjars (:system-jar-info (:config conf (:config opts)))]
-    ; clear out the file before writing to it
-    (spit output "")
-  
+ 
   
     ; for each pipeline, create <key>/jarname jarname pairs and write to file
     (doseq [[k v] pipelines]

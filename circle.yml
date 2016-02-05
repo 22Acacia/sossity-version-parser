@@ -1,0 +1,13 @@
+machine:
+  java:
+    version: oraclejdk8
+
+test:
+  override:
+   - lein test
+
+deployment:
+  demo:
+    branch: master
+    commands:
+      - $HOME/$CIRCLE_PROJECT_REPONAME/deploy_project.sh

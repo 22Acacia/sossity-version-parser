@@ -1,4 +1,4 @@
-(defproject version-parser "0.1.0-SNAPSHOT"
+(defproject version-parser "1.0.0"
   :description "parses tinyconfig.clj and writes out version information for build process"
   :url "http://22acacia.com"
   :license {:name "Eclipse Public License"

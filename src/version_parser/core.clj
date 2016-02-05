@@ -19,7 +19,7 @@
   (let [opts (:options (clojure.tools.cli/parse-opts args cli-options))
         output (:output opts)
         pipelines (:pipelines (conf (:config opts)))
-        otherjars (:system-jar-info (:config conf (:config opts)))]
+        otherjars (:system-jar-info (:config (conf (:config opts))))]
  
   
     ; for each pipeline, create <key>/jarname jarname pairs and write to file

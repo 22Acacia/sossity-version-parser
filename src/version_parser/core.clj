@@ -16,24 +16,19 @@
 (defn -main
   "Entry Point"
   [& args]
-  
-  (let [opts (:options (clojure.tools.cli/parse-opts args cli-options))]
+  (let [opts (:options (clojure.tools.cli/parse-opts args cli-options))
+        output (:output opts)
+        pipelines (:pipelines conf (:config opts))
+        otherjars (:system-jar-info (:config conf (:config opts)))]
     ; clear out the file before writing to it
-    (def output (:output opts))
     (spit output "")
   
-    (def pipelines (:pipelines conf (:config opts)))
-  
     ; for each pipeline, create <key>/jarname jarname pairs and write to file
-    (doseq [[k v]pipelines] 
+    (doseq [[k v] pipelines]
       (spit output 
         (clojure.string/join " " 
           [(:pail v) (clojure.string/join "/" [(:key v) (:transform-jar v)]) (:transform-jar v) "\n"]) :append true))
 
-
-    ; find the non-pipeline jars
-    (def otherjars (:system-jar-info (:config conf(:config opts))))
-  
     (doseq [[k v]otherjars]
       (spit output
         (clojure.string/join " "
